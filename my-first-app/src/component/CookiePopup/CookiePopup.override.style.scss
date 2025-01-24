@@ -1,0 +1,92 @@
+.CookiePopup {
+  background-color: black;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 16px;
+  width: fit-content;
+  height: fit-content;
+  padding: 3rem;
+  gap: 2rem;
+  opacity: 1;
+  filter: drop-shadow(0px 0px 25px #000000);
+  z-index: 200;
+  animation: scaleUpCenter 1s ease 0s 1 normal forwards;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    padding: 1.5rem;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 350px;
+    border-radius: 12px;
+    gap: 1.5rem;
+  }
+
+  &-Content {
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+
+    &::after {
+      content: '.';
+      color: var(--color-white);
+    }
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+
+  &-Link {
+    font-size: 20px;
+    font-weight: 400;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+
+  &-CTA {
+    color: white;
+    background-color: var(--primary-base-color);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 16px;
+    white-space: nowrap;
+    margin-right: 41px;
+    text-align: center;
+    border-radius: 8px;
+    align-self: stretch;
+
+    &:hover {
+      color: white;
+      background-color: var(--primary-dark-color);
+    }
+
+    @media (max-width: 768px) {
+      margin-right: 0;
+    }
+  }
+}
+
+@keyframes scaleUpCenter {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
