@@ -19,7 +19,7 @@
   z-index: 200;
   animation: scaleUpCenter 1s ease 0s 1 normal forwards;
 
-  @media (max-width: 768px) {
+  @include mobile {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -43,7 +43,7 @@
       color: var(--color-white);
     }
 
-    @media (max-width: 768px) {
+    @include mobile {
       font-size: 16px;
     }
   }
@@ -52,7 +52,7 @@
     font-size: 20px;
     font-weight: 400;
 
-    @media (max-width: 768px) {
+    @include mobile {
       font-size: 16px;
     }
   }
@@ -76,7 +76,7 @@
       background-color: var(--primary-dark-color);
     }
 
-    @media (max-width: 768px) {
+    @include mobile {
       margin-right: 0;
     }
   }
