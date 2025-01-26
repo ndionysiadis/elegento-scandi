@@ -30,9 +30,11 @@ export const BurgerMenu = ({ isOpen, closeMenu }) => {
                 </button>
                 <nav>
                     <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="#">Smartphones & Gadgets</a></li>
+                        <li><a href="#">Laptops and Computers</a></li>
+                        <li><a href="#">Household appliances</a></li>
+                        <li><a href="#">TV, audio, photo, video</a></li>
+                        <li><a href="#">Kitchen Appliances</a></li>
                     </ul>
                 </nav>
             </div>
