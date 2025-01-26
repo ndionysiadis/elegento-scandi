@@ -1,43 +1,37 @@
 .Header {
   &-LogoWrapper {
+    // Common styles
     inset-block-end: 0;
     height: var(--header-logo-height);
     inset-inline-start: 0;
-    max-width: var(--header-logo-width); // Ensure the logo wrapper has a max-width
-    opacity: 1; // Ensure the logo wrapper is visible
-    overflow: visible; // Ensure the logo wrapper is not hidden
+    max-width: var(--header-logo-width);
+    opacity: 1;
+    overflow: visible;
     inset-inline-end: 0;
     inset-block-start: 0;
     width: var(--header-logo-width);
 
     @include mobile {
       margin: auto;
-      display: flex; // Ensure the logo and burger menu are aligned
-      align-items: center; // Center the logo and burger menu vertically
-      justify-content: space-between; // Space the logo and burger menu
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     @include desktop {
-      grid-column: 1 / 2;
-      min-height: var(--header-nav-height);
-      position: absolute;
+      display: flex; // Ensure the logo shows in desktop view
+      align-items: center;
+      justify-content: space-between;
     }
   }
 
   &-BurgerIcon {
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: block; // Ensure the burger icon is visible
-    margin-left: 10px; // Add spacing between the logo and burger icon
-
     @include mobile {
-      display: block; // Ensure the burger icon is visible on mobile
+      display: block;
     }
 
     @include desktop {
-      display: none; // Hide the burger icon on desktop
+      display: none; // Keep hidden on desktop
     }
   }
 }

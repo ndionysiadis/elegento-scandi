@@ -6,22 +6,24 @@ import './BurgerMenu.style.scss';
  * @namespace Component/BurgerMenu/Component
  */
 export const BurgerMenu = ({ isOpen, closeMenu }) => {
-    console.log('BurgerMenu isOpen:', isOpen); // Add this to debug the isOpen prop
-    console.log('BurgerMenu closeMenu function:', closeMenu); // Check the function is passed correctly
 
     return (
         <div className={`BurgerMenu ${isOpen ? 'BurgerMenu_isOpen' : ''}`}>
             <div
                 className="BurgerMenu-Overlay"
-                onClick={closeMenu}
-                onKeyDown={closeMenu}
+                onClick={() => closeMenu(false)}
+                onKeyDown={() => closeMenu(false)}
                 role="button"
                 tabIndex={0}
             />
             <div className="BurgerMenu-Drawer">
                 <button
                     className="BurgerMenu-CloseButton"
-                    onClick={closeMenu}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        console.log('Close button clicked!');
+                        closeMenu();
+                    }}
                     aria-label="Close menu"
                 >
                     ×

@@ -18,6 +18,7 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 100;
+    pointer-events: all; // Ensure overlay captures click events
   }
 
   &-Drawer {
@@ -27,9 +28,10 @@
     width: 250px;
     height: 100%;
     background: white;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    z-index: 101;
+    transform: translateX(-100%); // Drawer starts hidden
+    transition: transform 0.3s ease; // Smooth slide-in animation
+    z-index: 101; // Above overlay
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Optional shadow for aesthetics
   }
 
   &-CloseButton {
@@ -40,5 +42,38 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    z-index: 102; // Ensure it's above everything in the drawer
+    pointer-events: all; // Allow clicks even if overlaps
+    color: #333; // Default color
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #000; // Darker on hover for feedback
+    }
+  }
+
+  nav {
+    margin-top: 50px; // Space from top for menu items
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 20px; // Spacing between items
+
+      a {
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #000; // Change color on hover for feedback
+        }
+      }
+    }
   }
 }
