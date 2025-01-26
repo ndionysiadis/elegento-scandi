@@ -1,0 +1,43 @@
+.Header {
+  &-LogoWrapper {
+    inset-block-end: 0;
+    height: var(--header-logo-height);
+    inset-inline-start: 0;
+    max-width: var(--header-logo-width); // Ensure the logo wrapper has a max-width
+    opacity: 1; // Ensure the logo wrapper is visible
+    overflow: visible; // Ensure the logo wrapper is not hidden
+    inset-inline-end: 0;
+    inset-block-start: 0;
+    width: var(--header-logo-width);
+
+    @include mobile {
+      margin: auto;
+      display: flex; // Ensure the logo and burger menu are aligned
+      align-items: center; // Center the logo and burger menu vertically
+      justify-content: space-between; // Space the logo and burger menu
+    }
+
+    @include desktop {
+      grid-column: 1 / 2;
+      min-height: var(--header-nav-height);
+      position: absolute;
+    }
+  }
+
+  &-BurgerIcon {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: block; // Ensure the burger icon is visible
+    margin-left: 10px; // Add spacing between the logo and burger icon
+
+    @include mobile {
+      display: block; // Ensure the burger icon is visible on mobile
+    }
+
+    @include desktop {
+      display: none; // Hide the burger icon on desktop
+    }
+  }
+}
