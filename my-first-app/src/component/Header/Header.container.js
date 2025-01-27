@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { changeNavigationState } from 'SourceStore/Navigation/Navigation.action';
 import { NavigationType } from 'SourceStore/Navigation/Navigation.type';
-import MenuQuery from 'Query/Menu.query';
-import DataContainer from 'Util/Request/DataContainer';
-import MenuHelper from 'Util/Menu';
+import MenuQuery from 'SourceQuery/Menu.query';
+import DataContainer from 'SourceUtil/Request/DataContainer';
+import MenuHelper from 'SourceUtil/Menu';
 import HeaderComponent from './Header.component';
 
 const mapStateToProps = (state) => ({
