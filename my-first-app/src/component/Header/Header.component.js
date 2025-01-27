@@ -1,28 +1,17 @@
+import React from 'react';
 import SourceHeader from 'SourceComponent/Header/Header.component';
 import BurgerMenu from 'Component/BurgerMenu/BurgerMenu.component';
-import Link from 'SourceComponent/Link';
-import Logo from 'SourceComponent/Logo';
-import media, { LOGO_MEDIA } from 'SourceUtil/Media/Media';
 import './Header.override.style.scss';
 
 export class HeaderComponent extends SourceHeader {
-    static defaultProps = {
-        ...SourceHeader.defaultProps,
-        navigationState: {
-            name: '',
-            isHiddenOnMobile: false,
-        },
-    };
-
     renderLogoImage() {
-        const { header_logo_src, logo_alt } = this.props;
-        const logoSrc = header_logo_src ? media(header_logo_src, LOGO_MEDIA) : null;
+        const logoSrc = '/images/fixed_logo.png';
 
         return (
-            <Logo
+            <img
                 src={logoSrc}
-                alt={logo_alt || 'Logo'}
-                title={logo_alt || 'Logo'}
+                alt="Logo"
+                title="Logo"
             />
         );
     }
@@ -41,15 +30,14 @@ export class HeaderComponent extends SourceHeader {
                     ☰
                 </button>
 
-                <Link
-                    to="/"
+                <a
+                    href="/"
                     aria-label="Go to homepage by clicking on logo"
                     block="Header"
                     elem="LogoLink"
                 >
                     {this.renderLogoImage()}
-                </Link>
-
+                </a>
             </div>
         );
     }

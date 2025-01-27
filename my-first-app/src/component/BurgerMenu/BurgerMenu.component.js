@@ -5,7 +5,8 @@ import './BurgerMenu.style.scss';
 /**
  * @namespace Component/BurgerMenu/Component
  */
-export const BurgerMenu = ({ isOpen, closeMenu }) => {
+export const BurgerMenu = ({isOpen, closeMenu}) => {
+    const logoSrc = '/images/fixed_logo.png';
 
     return (
         <div className={`BurgerMenu ${isOpen ? 'BurgerMenu_isOpen' : ''}`}>
@@ -17,24 +18,32 @@ export const BurgerMenu = ({ isOpen, closeMenu }) => {
                 tabIndex={0}
             />
             <div className="BurgerMenu-Drawer">
-                <button
-                    className="BurgerMenu-CloseButton"
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        console.log('Close button clicked!');
-                        closeMenu();
-                    }}
-                    aria-label="Close menu"
-                >
-                    ×
-                </button>
+                <div className="BurgerMenu-Header">
+                    <img
+                        src={logoSrc}
+                        alt="Logo"
+                        className="BurgerMenu-Logo"
+                        aria-label="Go to homepage by clicking on logo"
+                    />
+                    <button
+                        className="BurgerMenu-CloseButton"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            closeMenu();
+                        }}
+                        aria-label="Close menu"
+                    >
+                        ×
+                    </button>
+                </div>
+
                 <nav>
                     <ul>
-                        <li><a href="#">Smartphones & Gadgets</a></li>
-                        <li><a href="#">Laptops and Computers</a></li>
-                        <li><a href="#">Household appliances</a></li>
-                        <li><a href="#">TV, audio, photo, video</a></li>
-                        <li><a href="#">Kitchen Appliances</a></li>
+                        <a href="#">Smartphones & Gadgets</a>
+                        <a href="#">Laptops and Computers</a>
+                        <a href="#">Household appliances</a>
+                        <a href="#">TV, audio, photo, video</a>
+                        <a href="#">Kitchen Appliances</a>
                     </ul>
                 </nav>
             </div>
