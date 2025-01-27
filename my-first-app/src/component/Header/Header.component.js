@@ -1,8 +1,7 @@
 import SourceHeader from 'SourceComponent/Header/Header.component';
 import BurgerMenu from 'Component/BurgerMenu/BurgerMenu.component';
-import Link from 'Component/Link';
-import Logo from 'Component/Logo';
-import { DEFAULT_STATE_NAME } from 'SourceComponent/NavigationAbstract/NavigationAbstract.config';
+import Link from 'SourceComponent/Link';
+import Logo from 'SourceComponent/Logo';
 import media, { LOGO_MEDIA } from 'SourceUtil/Media/Media';
 import './Header.override.style.scss';
 
@@ -10,11 +9,9 @@ export class HeaderComponent extends SourceHeader {
     static defaultProps = {
         ...SourceHeader.defaultProps,
         navigationState: {
-            name: DEFAULT_STATE_NAME,
-            isHiddenOnMobile: false
+            name: '',
+            isHiddenOnMobile: false,
         },
-        productsInWishlist: {},
-        isWishlistLoading: false
     };
 
     renderLogoImage() {
@@ -24,17 +21,26 @@ export class HeaderComponent extends SourceHeader {
         return (
             <Logo
                 src={logoSrc}
-                alt={logo_alt}
-                title={logo_alt}
+                alt={logo_alt || 'Logo'}
+                title={logo_alt || 'Logo'}
             />
         );
     }
 
-    renderLogo(isVisible = false) {
-        const { isMobileMenuOpen = false, toggleMobileMenu = () => {} } = this.props;
+    renderLogo(isVisible = true) {
+        const { isMobileMenuOpen, toggleMobileMenu } = this.props;
 
         return (
             <div block="Header" elem="LogoWrapper" mods={{ isVisible }}>
+                <button
+                    block="Header"
+                    elem="BurgerIcon"
+                    onClick={() => toggleMobileMenu(!isMobileMenuOpen)}
+                    aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+                >
+                    ☰
+                </button>
+
                 <Link
                     to="/"
                     aria-label="Go to homepage by clicking on logo"
@@ -43,29 +49,22 @@ export class HeaderComponent extends SourceHeader {
                 >
                     {this.renderLogoImage()}
                 </Link>
-                <button
-                    block="Header"
-                    elem="BurgerIcon"
-                    onClick={toggleMobileMenu}
-                    aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-                >
-                    ☰
-                </button>
+
             </div>
         );
     }
 
     render() {
-        const parent = super.render();
         const { isMobileMenuOpen, toggleMobileMenu } = this.props;
 
         return (
-            <section block="Header" elem="Wrapper" mods={{ isHidden: isMobileMenuOpen }}>
+            <section block="Header" elem="Wrapper" mods={{ isMobileMenuOpen }}>
                 <header
                     block="Header"
                     mods={{ isHidden: isMobileMenuOpen }}
+                    aria-hidden={isMobileMenuOpen}
                 >
-                    {parent}
+                    {super.render()}
                 </header>
                 <BurgerMenu isOpen={isMobileMenuOpen} closeMenu={toggleMobileMenu} />
             </section>

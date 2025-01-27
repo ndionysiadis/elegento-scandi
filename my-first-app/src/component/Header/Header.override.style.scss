@@ -1,43 +1,58 @@
 .Header {
   transition: opacity 0.3s ease, visibility 0.3s ease;
 
+  &_isHidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
   &-LogoWrapper {
-    inset-block-end: 0;
     height: var(--header-logo-height);
-    inset-inline-start: 0;
-    max-width: var(--header-logo-width);
-    opacity: 1;
-    overflow: visible;
-    inset-inline-end: 0;
-    inset-block-start: 0;
     width: var(--header-logo-width);
-
-    @include mobile {
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
     @include desktop {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
     }
   }
 
   &-BurgerIcon {
-    @include mobile {
-      display: block;
-    }
+    display: block;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
 
     @include desktop {
       display: none;
     }
   }
 
-  &_isHidden {
-    opacity: 0;
-    visibility: hidden;
+  &-LogoLink {
+    display: inline-block;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.BurgerMenu {
+  &_isOpen {
+    .BurgerMenu-Overlay {
+      display: block;
+    }
+
+    .BurgerMenu-Drawer {
+      transform: translateX(0);
+    }
+
+    ~ .Header {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 }
