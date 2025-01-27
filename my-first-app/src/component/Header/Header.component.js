@@ -1,12 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SourceHeader from 'SourceComponent/Header/Header.component';
 import BurgerMenu from 'Component/BurgerMenu/BurgerMenu.component';
 import './Header.override.style.scss';
 
 export class HeaderComponent extends SourceHeader {
+    static propTypes = {
+        ...SourceHeader.propTypes,
+        isMobileMenuOpen: PropTypes.bool.isRequired,
+        toggleMobileMenu: PropTypes.func.isRequired,
+        menu: PropTypes.object,
+    };
+
+    static defaultProps = {
+        ...SourceHeader.defaultProps,
+        menu: {},
+    };
+
     renderLogoImage() {
         const logoSrc = '/images/fixed_logo.png';
-
         return (
             <img
                 src={logoSrc}
@@ -18,7 +30,6 @@ export class HeaderComponent extends SourceHeader {
 
     renderLogo(isVisible = true) {
         const { isMobileMenuOpen, toggleMobileMenu } = this.props;
-
         return (
             <div block="Header" elem="LogoWrapper" mods={{ isVisible }}>
                 <button
@@ -29,7 +40,6 @@ export class HeaderComponent extends SourceHeader {
                 >
                     ☰
                 </button>
-
                 <a
                     href="/"
                     aria-label="Go to homepage by clicking on logo"
@@ -43,7 +53,7 @@ export class HeaderComponent extends SourceHeader {
     }
 
     render() {
-        const { isMobileMenuOpen, toggleMobileMenu } = this.props;
+        const { isMobileMenuOpen, toggleMobileMenu, menu } = this.props;
 
         return (
             <section block="Header" elem="Wrapper" mods={{ isMobileMenuOpen }}>
@@ -54,7 +64,11 @@ export class HeaderComponent extends SourceHeader {
                 >
                     {super.render()}
                 </header>
-                <BurgerMenu isOpen={isMobileMenuOpen} closeMenu={toggleMobileMenu} />
+                <BurgerMenu
+                    isOpen={isMobileMenuOpen}
+                    closeMenu={toggleMobileMenu}
+                    menu={menu}
+                />
             </section>
         );
     }

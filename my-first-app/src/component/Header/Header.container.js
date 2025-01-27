@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import { changeNavigationState } from 'SourceStore/Navigation/Navigation.action';
 import { NavigationType } from 'SourceStore/Navigation/Navigation.type';
+import MenuQuery from 'Query/Menu.query';
+import DataContainer from 'Util/Request/DataContainer';
+import MenuHelper from 'Util/Menu';
 import HeaderComponent from './Header.component';
 
 const mapStateToProps = (state) => ({
@@ -10,7 +13,7 @@ const mapStateToProps = (state) => ({
     cartTotals: state.CartReducer.cartTotals,
     navigationState: state.NavigationReducer[NavigationType.TOP_NAVIGATION_TYPE].navigationState,
     productsInWishlist: state.WishlistReducer.productsInWishlist || {},
-    isWishlistLoading: state.WishlistReducer.isLoading
+    isWishlistLoading: state.WishlistReducer.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -25,7 +28,43 @@ const mapDispatchToProps = (dispatch) => ({
     onSearchOutsideClick: () => {},
     onSearchBarFocus: () => {},
     onSearchBarChange: () => {},
-    onClearSearchButtonClick: () => {}
+    onClearSearchButtonClick: () => {},
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);
+class HeaderContainer extends DataContainer {
+    state = {
+        menu: {},
+    };
+
+    componentDidMount() {
+        this._getMenu();
+    }
+
+    _getMenu() {
+        this.fetchData(
+            [MenuQuery.getQuery()],
+            ({ menu }) => this.setState({
+                menu: MenuHelper.reduce(menu),
+            }),
+        );
+    }
+
+    containerProps() {
+        const { menu } = this.state;
+        return {
+            ...this.props,
+            menu: Object.values(menu).length ? Object.values(menu)[0].children : {},
+        };
+    }
+
+    render() {
+        return (
+            <HeaderComponent
+                {...this.containerProps()}
+                {...this.containerFunctions}
+            />
+        );
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
