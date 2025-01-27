@@ -3,23 +3,29 @@ import { changeNavigationState } from 'SourceStore/Navigation/Navigation.action'
 import { NavigationType } from 'SourceStore/Navigation/Navigation.type';
 import HeaderComponent from './Header.component';
 
-/** @namespace Component/Header/Container/mapStateToProps */
 const mapStateToProps = (state) => ({
     isMobileMenuOpen:
         state.NavigationReducer[NavigationType.TOP_NAVIGATION_TYPE].navigationState.name === 'menu',
+    device: state.ConfigReducer.device,
+    cartTotals: state.CartReducer.cartTotals,
+    navigationState: state.NavigationReducer[NavigationType.TOP_NAVIGATION_TYPE].navigationState,
+    productsInWishlist: state.WishlistReducer.productsInWishlist || {},
+    isWishlistLoading: state.WishlistReducer.isLoading
 });
 
-/** @namespace Component/Header/Container/mapDispatchToProps */
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
     toggleMobileMenu: (isOpen) => {
-        const newState = isOpen ? 'menu' : 'closed';
         dispatch(
             changeNavigationState(NavigationType.TOP_NAVIGATION_TYPE, {
-                name: newState,
+                name: isOpen ? 'menu' : 'closed',
                 force: true,
             })
         );
     },
+    onSearchOutsideClick: () => {},
+    onSearchBarFocus: () => {},
+    onSearchBarChange: () => {},
+    onClearSearchButtonClick: () => {}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);

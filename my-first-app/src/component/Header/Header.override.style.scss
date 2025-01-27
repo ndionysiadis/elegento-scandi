@@ -1,6 +1,7 @@
 .Header {
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
   &-LogoWrapper {
-    // Common styles
     inset-block-end: 0;
     height: var(--header-logo-height);
     inset-inline-start: 0;
@@ -19,7 +20,7 @@
     }
 
     @include desktop {
-      display: flex; // Ensure the logo shows in desktop view
+      display: flex;
       align-items: center;
       justify-content: space-between;
     }
@@ -31,7 +32,12 @@
     }
 
     @include desktop {
-      display: none; // Keep hidden on desktop
+      display: none;
     }
+  }
+
+  &_isHidden {
+    opacity: 0;
+    visibility: hidden;
   }
 }
