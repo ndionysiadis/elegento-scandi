@@ -24,13 +24,13 @@ export interface HeaderContainerMapStateProps {
     activeOverlay: string;
     isWishlistLoading: boolean;
     productsInWishlist: Record<string, IndexedWishlistProduct>;
-    isMobileMenuOpen: boolean; // Added
+    isMobileMenuOpen: boolean;
 }
 
 export interface HeaderMapDispatchToProps {
     showOverlay: (overlayKey: string) => void;
     hideActiveOverlay: () => void;
-    toggleMobileMenu: () => void; // Added
+    toggleMobileMenu: () => void;
 }
 
 export interface HeaderContainerFunctions {
@@ -50,7 +50,7 @@ export interface HeaderContainerFunctions {
     shareWishlist: () => void;
     onSignIn: () => void;
     hideActiveOverlay: () => void;
-    toggleMobileMenu: () => void; // Added
+    toggleMobileMenu: () => void;
 }
 
 export interface HeaderContainerProps extends
@@ -94,10 +94,10 @@ export interface HeaderComponentProps extends NavigationAbstractComponentProps {
     shouldRenderCartOverlay?: boolean;
     activeOverlay: string;
     productsInWishlist: Record<string, IndexedWishlistProduct>;
-    isMobileMenuOpen: boolean; // Added
-    toggleMobileMenu: () => void; // Added
-    isOpen?: boolean; // For the mobile menu state
-    closeMenu?: () => void; // Function to close the mobile menu
+    isMobileMenuOpen: boolean;
+    toggleMobileMenu: () => void;
+    isOpen?: boolean;
+    closeMenu?: () => void;
 }
 
 export type HeaderContainerPropsKeys =
@@ -120,5 +120,5 @@ export type HeaderContainerPropsKeys =
     | 'shouldRenderCartOverlay'
     | 'firstname'
     | 'productsInWishlist'
-    | 'isMobileMenuOpen' // Added
-    | 'toggleMobileMenu'; // Added
+    | 'isMobileMenuOpen'
+    | 'toggleMobileMenu';
